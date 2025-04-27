@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ProfileInfo from '../Cards/ProfileInfo'
 import { useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar';
+import { FaUser } from "react-icons/fa";
 
 const Navbar = ({userInfo,onSearchNote,handleClearSearch}) => {
   const [searchQuery,setSearchQuery] =useState("");
@@ -42,7 +43,14 @@ const onClearSearch=()=>{
         }
       }}
       />
-      <ProfileInfo userInfo={userInfo} onLogout={onLogout}/>
+        {userInfo ? (
+    <ProfileInfo userInfo={userInfo} onLogout={onLogout} />
+  ) : (
+    <FaUser 
+      className="text-2xl text-gray-600 cursor-pointer hover:text-black" 
+      onClick={() => Navigate("/login")}
+    />
+  )}
     </div>
   )
 }
